@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "999070888970",
+    "firebase_url": "https://testrun-64ce1.firebaseio.com",
+    "project_id": "testrun-64ce1",
+    "storage_bucket": "testrun-64ce1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999070888970:android:a4d27f4a29cd8523",
+        "android_client_info": {
+          "package_name": "com.swapnanateshbabu.code_connect_01"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999070888970-cu1ahk62nmuj1v0h1s9c2jptd59v6t31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDxi2SXchvBu5_I3KAguwtiN3Eh-t-_V0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999070888970-cu1ahk62nmuj1v0h1s9c2jptd59v6t31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

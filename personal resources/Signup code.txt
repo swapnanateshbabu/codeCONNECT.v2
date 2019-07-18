@@ -1,0 +1,10 @@
+Text(
+                                "Sign Up",
+                                style: new TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                  fontFamily: 'Helvetica',
+                                  fontWeight: FontWeight.w200,
+                                  letterSpacing: 0.0,
+                                ),
+                              ),
