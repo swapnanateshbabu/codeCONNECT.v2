@@ -42,11 +42,9 @@ class _FeedState extends State<Feed> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
-                        leading: Icon(
-                          Icons.favorite_border
-                        ),
+                        trailing: Icon(Icons.favorite_border),
                         title: Text(snapshot.data[index].project),
-                        subtitle: Text(snapshot.data[index].name),
+                        subtitle: Text(snapshot.data[index].date),
                         onTap: () {
                           Navigator.push(
                             context,
