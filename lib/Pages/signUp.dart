@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
-import 'feed.dart';
+import 'Home.dart';
 
 class signUpPage extends StatefulWidget {
   @override
@@ -179,6 +179,7 @@ class _signUpPageState extends State<signUpPage> {
                               },
                               onSaved: (input) => _address = input,
                               decoration: new InputDecoration(
+                                border: InputBorder.none,
                                 hintText: 'Enter address',
                               ),
                               keyboardType: TextInputType.text,
@@ -209,6 +210,7 @@ class _signUpPageState extends State<signUpPage> {
                               },
                               onSaved: (input) => _zipcode = input,
                               decoration: new InputDecoration(
+                                border: InputBorder.none,
                                 hintText: 'Enter zipcode',
                               ),
                               keyboardType: TextInputType.text,
@@ -258,7 +260,7 @@ class _signUpPageState extends State<signUpPage> {
         FirebaseUser user = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: _email, password: _password);
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Feed(user: user)));
+            context, MaterialPageRoute(builder: (context) => Home()));
       } catch (e) {
         print(e.message);
       }

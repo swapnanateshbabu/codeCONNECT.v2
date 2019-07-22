@@ -1,6 +1,6 @@
 import 'package:code_connect_01/Pages/signUp.dart';
 import 'package:flutter/material.dart';
-import 'feed.dart';
+import 'Home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -92,6 +92,7 @@ class LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 },
                                 onSaved: (input) => _emailid = input,
                                 decoration: new InputDecoration(
+                                  border: InputBorder.none,
                                   hintText: 'Enter email',
                                 ),
                                 keyboardType: TextInputType.emailAddress,
@@ -124,6 +125,7 @@ class LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 },
                                 onSaved: (input) => _password = input,
                                 decoration: new InputDecoration(
+                                  border: InputBorder.none,
                                   hintText: 'Enter password',
                                 ),
                                 keyboardType: TextInputType.text,
@@ -196,7 +198,7 @@ class LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
         FirebaseUser user = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: _emailid, password: _password);
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Feed(user: user)));
+            context, MaterialPageRoute(builder: (context) => Home()));
       } catch (e) {
         print(e.message);
       }
