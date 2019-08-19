@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:code_connect_01/Pages/logIn.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(codeConnect());
 }
 
-class MyApp extends StatelessWidget {
+class codeConnect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.amber,
+      ),
       debugShowCheckedModeBanner: false,
       home: LoginPage(
       ),
-           );
+    );
   }
 }

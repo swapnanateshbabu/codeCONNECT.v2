@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:code_connect_01/Pages/Project.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Feed extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class Feed extends StatefulWidget {
 class _FeedState extends State<Feed> {
   Future<List<User>> _getUsers() async {
     var data = await http
-        .get("http://www.json-generator.com/api/json/get/ckTnyDEsKq?indent=2");
+        .get("http://www.json-generator.com/api/json/get/cpIZMSuQKq?indent=2");
     var jsonData = json.decode(data.body);
     List<User> users = [];
     for (var u in jsonData) {
@@ -27,37 +28,79 @@ class _FeedState extends State<Feed> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Container(
+      body: Container(
         child: FutureBuilder(
-            future: _getUsers(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.data == null) {
-                return Container(
-                  child: Center(
-                    child: Text('Loading...'),
+          future: _getUsers(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.data == null) {
+              return Container(
+                child: Center(
+                  child: Text('Loading...'),
+                ),
+              );
+            } else {
+              return Column(
+                children: <Widget>[
+                  new Container(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width,
+                    child: GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(35.0844, -106.6504),
+                      ),
+                    ),
                   ),
-                );
-              } else {
-                return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        trailing: Icon(Icons.favorite_border),
-                        title: Text(snapshot.data[index].project),
-                        subtitle: Text(snapshot.data[index].date),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                              builder: (context) =>
-                                  projectPage(snapshot.data[index]),
-                            ),
-                          );
-                        },
-                      );
-                    });
-              }
-            }),
+                  new Container(
+                    color: Colors.amber,
+                    height: MediaQuery.of(context).size.height * .04,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15.0, 6.0, 0, 0),
+                      child: Text(
+                        'CITY of ALBUQUERQUE',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.3,
+                        ),
+                      ),
+                    ),
+                  ),
+                  new Container(
+                    height: MediaQuery.of(context).size.height * 0.55,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index.isOdd) return Divider();
+                        return ListTile(
+                          trailing: Icon(Icons.favorite_border),
+                          title: Text(snapshot.data[index].project,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                          ),
+                          subtitle: Text(snapshot.data[index].date),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                builder: (context) =>
+                                    projectPage(snapshot.data[index]),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }
@@ -74,6 +117,15 @@ class User {
   final String email;
   final String details;
 
-  User(this.index, this.project, this.address, this.application, this.date,
-      this.name, this.phone, this.email, this.details);
+  User(
+    this.index,
+    this.project,
+    this.address,
+    this.application,
+    this.date,
+    this.name,
+    this.phone,
+    this.email,
+    this.details,
+  );
 }

@@ -118,7 +118,7 @@ class LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10.0),
                               child: new TextFormField(
-                                validator: (input) {
+                                validator: (input){
                                   if (input.length < 6) {
                                     return 'Your password needs to be atleast 6 characters';
                                   }
